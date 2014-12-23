@@ -10,6 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use fortyeight\DynamicIPBundle\Entity\DynamicIP as DynIP;
 use Aws\Common\Aws;
 use Aws\S3\Exception\S3Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DefaultController extends Controller
 {
