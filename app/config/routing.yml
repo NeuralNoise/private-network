@@ -1,6 +1,14 @@
+fortyeight_user:
+    resource: "@fortyeightUserBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 fortyeight_dynamic_ip:
     resource: "@fortyeightDynamicIPBundle/Controller/"
     type:     annotation
     prefix:   /
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
 
 

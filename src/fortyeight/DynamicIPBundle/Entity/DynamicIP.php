@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @ORM\Table(name="fortyeight_dynamic_ip")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class DynamicIP
 {

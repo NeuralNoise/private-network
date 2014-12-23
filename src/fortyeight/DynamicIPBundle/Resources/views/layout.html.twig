@@ -1,0 +1,19 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}48{% endblock %}
+
+{% block header %}
+{% include "fortyeightDynamicIPBundle::header.html.twig" %}
+{% endblock %}
+
+{% block container %}
+<div class="page-header">
+	<h1 class="title-back">{{ block('headertitle') }}</h1>
+</div>
+{% for flashMessage in app.session.flashbag.get('notice') %}
+<div class="alert alert-info alert-dismissable alert-help flash-notice">
+	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+	{{ flashMessage }}
+</div>
+{% endfor %}
+{% endblock %}

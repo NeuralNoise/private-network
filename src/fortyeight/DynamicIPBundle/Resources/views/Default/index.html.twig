@@ -1,1 +1,33 @@
-Hello {{ name }}!
+{% extends "fortyeightDynamicIPBundle::layout.html.twig" %}
+{% block title %}48 | Dynamic Network{% endblock %}
+{% block headertitle %}Dynamic Network{% endblock headertitle %}
+{% block container %}
+{{ parent() }}
+<table class="table table-hover">
+	<tr>
+		<th>IP</th>
+		<th>Title</th>
+		<th>Actions</th>
+	</tr>
+	{% for ip in dynIPs %}
+	<tr>
+		<td>{{ ip.ip }}</td>
+		<td>{{ ip.title }}</td>
+		<td>
+			<a href="{{ path('remove_ip', {'hash': ip.hash}) }}"><span class="glyphicon glyphicon-trash"></span></a>
+			<a href="{{ path('update_ip', {'hash': ip.hash}) }}"><span class="glyphicon glyphicon-refresh"></span></a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+{% if dynIP %}<p>Your IP is already in the list</p>{% endif %}
+<form class="form-inline" role="form" action="{{ path('add_ip') }}">
+	<div class="form-group">
+		<input type="text" name="ip" class="form-control" id="inputIP" placeholder="IP you want to add" value="{{ ip }}">
+	</div>
+	<div class="form-group">
+		<input type="text" name="title" class="form-control" id="inputTitle" placeholder="Enter title">
+	</div>
+	<button type="submit" class="btn btn-info">Add my IP</button>
+</form>
+{% endblock container %}
