@@ -72,7 +72,7 @@ class DefaultController extends Controller
 				$em->persist($dynIP);
 				$em->flush();
 
-				$authorizeResp = $this->firewallAddIP($ip, 'sg-8f1ccaea');
+				$authorizeResp = $this->firewallAddIP($ip, $this->container->getParameter('aws_group_id'));
 				//$authorizeResp = $this->firewallAddIP($ip, 'sg-2f4a8b7a');
 			}
 		}
@@ -99,7 +99,7 @@ class DefaultController extends Controller
 			$em->remove($dynIP);
 			$em->flush();
 
-			$revokeResp = $this->firewallRemoveIP($ip, 'sg-8f1ccaea');
+			$revokeResp = $this->firewallRemoveIP($ip, $this->container->getParameter('aws_group_id'));
 			//$revokeResp = $this->firewallRemoveIP($ip, 'sg-2f4a8b7a');
 
 		}
@@ -130,13 +130,13 @@ class DefaultController extends Controller
 				'ip' => $ip
 			));
 			if ($dynIP && !$dynIP2) {
-				$revokeResp = $this->firewallRemoveIP($dynIP->getIp(), 'sg-8f1ccaea');
+				$revokeResp = $this->firewallRemoveIP($dynIP->getIp(), $this->container->getParameter('aws_group_id'));
 				//$revokeResp = $this->firewallRemoveIP($dynIP->getIp(), 'sg-2f4a8b7a');
 
 				$dynIP->setIp($ip);
 				$em->flush();
 
-				$authorizeResp = $this->firewallAddIP($ip, 'sg-8f1ccaea');
+				$authorizeResp = $this->firewallAddIP($ip, $this->container->getParameter('aws_group_id'));
 				//$authorizeResp = $this->firewallAddIP($ip, 'sg-2f4a8b7a');
 
 			}
@@ -169,7 +169,7 @@ class DefaultController extends Controller
 			if ($dynIP && !$dynIP2) {
 
 				if ($ip != $dynIP->getIp()) {
-					$revokeResp = $this->firewallRemoveIP($dynIP->getIp(), 'sg-8f1ccaea');
+					$revokeResp = $this->firewallRemoveIP($dynIP->getIp(), $this->container->getParameter('aws_group_id'));
 					//$revokeResp = $this->firewallRemoveIP($dynIP->getIp(), 'sg-2f4a8b7a');
 
 					$dynIP->setIp($ip);
@@ -177,7 +177,7 @@ class DefaultController extends Controller
 					$dynIP->setPingAt(new \DateTime());
 					$em->flush();
 
-					$authorizeResp = $this->firewallAddIP($ip, 'sg-8f1ccaea');
+					$authorizeResp = $this->firewallAddIP($ip, $this->container->getParameter('aws_group_id'));
 					//$authorizeResp = $this->firewallAddIP($ip, 'sg-2f4a8b7a');
 
 					$response->setData(array(
@@ -212,7 +212,7 @@ class DefaultController extends Controller
 		return $response;
 	}
 
-	public function firewallAddIP($ip, $groupId = 'sg-8d9c5de8')
+	public function firewallAddIP($ip, $groupId)
 	{
 		$aws = Aws::factory(array(
 			'key'    => $this->container->getParameter('aws_key'),
