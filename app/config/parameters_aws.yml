@@ -1,8 +1,8 @@
 parameters:
   mg_key: key-6a6e9fae8142c06053574f3ff22277a3
   mg_domain: hound.villa-finder.com
-  aws_key: AKIAI2IOHGCZ2LMZUXKA
-  aws_secret: 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
+  aws_key: AKIAJIXNR4GOPC4MWFYA
+  aws_secret: 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
   aws_account_id: 5221-2168-7810
   aws_canonical_id: d7a587f5184b207d670da587736b774e2e191ecb88f1b33ae6fb529af22c641e
   aws_canonical_name: ~
