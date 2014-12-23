@@ -1,1 +1,6 @@
+fortyeight_dynamic_ip:
+    resource: "@fortyeightDynamicIPBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 
