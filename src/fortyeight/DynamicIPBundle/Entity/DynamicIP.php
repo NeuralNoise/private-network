@@ -78,12 +78,6 @@ class DynamicIP
     private $token;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\VoIP\Company\StructureBundle\Entity\Company", inversedBy="dynIPs")
-     * @ORM\JoinColumn(name="company_id", referencedColumnName="id", onDelete="CASCADE")
-     */
-    private $company;
-
-    /**
      * @ORM\PrePersist
      */
     public function prePersist()
@@ -295,28 +289,5 @@ class DynamicIP
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Set company
-     *
-     * @param \VoIP\Company\StructureBundle\Entity\Company $company
-     * @return DynamicIP
-     */
-    public function setCompany(\VoIP\Company\StructureBundle\Entity\Company $company = null)
-    {
-        $this->company = $company;
-
-        return $this;
-    }
-
-    /**
-     * Get company
-     *
-     * @return \VoIP\Company\StructureBundle\Entity\Company 
-     */
-    public function getCompany()
-    {
-        return $this->company;
     }
 }
